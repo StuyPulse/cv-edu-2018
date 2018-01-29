@@ -16,9 +16,9 @@ To set up on Windows, see `windows-setup.md` for instructions.
 - ReadTheDocs [tutorials](http://opencv-java-tutorials.readthedocs.io/en/latest/02-first-java-application-with-opencv.html)
   for OpenCV with Java (and GUIs with JavaFX).
 
-- Official OpenCV 3.1.0 [JavaDocs](http://docs.opencv.org/java/3.1.0/).
+- Official OpenCV 3.1.0 [JavaDocs](http://docs.opencv.org/java/3.1.0/). (There are no JavaDocs for OpenCV 3.2.0.)
 
-- Official OpenCV 3.1.0 [documentation](http://docs.opencv.org/3.1.0/). This has
+- Official OpenCV 3.1.0 [documentation](http://docs.opencv.org/3.2.0/). This has
   much more detail than the JavaDocs, but is intended for
   those using OpenCV with C++. There are no examples in Java
  (all are C/C++).
@@ -33,8 +33,8 @@ To develop on the desktops, log in to either a Guest session or your own
 account, then clone this repo and set up your environment:
 
 ```bash
-$ git clone https://github.com/Team694/cv-edu-2017
-$ cd cv-edu-2017
+$ git clone https://github.com/Team694/cv-edu-2018
+$ cd cv-edu-2018
 $ source setup-workstation.sh
 ```
 
@@ -50,13 +50,13 @@ $ make run
 If you encounter an error while running `make run` similar to the one below:
 
 ```
-Exception in thread "main" java.lang.UnsatisfiedLinkError: /path/to/cv-edu-2017/lib/opencv-3.0.0/build/lib/libopencv_java300.so: libopencv_photo.so.3.0: cannot open shared object file: No such file or directory
+Exception in thread "main" java.lang.UnsatisfiedLinkError: /path/to/cv-edu-2018/lib/opencv-3.2.0/build/lib/libopencv_java300.so: libopencv_photo.so.3.0: cannot open shared object file: No such file or directory
 ```
 
 you may need to run the command:
 
 ```bash
-$ export LD_LIBRARY_PATH=/path/to/cv-edu-2017/lib/opencv-3.0.0/build/lib/
+$ export LD_LIBRARY_PATH=/path/to/cv-edu-2018/lib/opencv-3.2.0/build/lib/
 ```
 
 ### StuyVision methods:

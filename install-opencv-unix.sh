@@ -1,10 +1,10 @@
 #!/bin/bash
 
-OPENCV_VERSION=3.0.0
+OPENCV_VERSION=3.2.0
 
 HELPFUL_GUIDES="
 http://www.learnopencv.com/install-opencv-3-on-yosemite-osx-10-10-x/
-http://rodrigoberriel.com/2014/10/installing-opencv-3-0-0-on-ubuntu-14-04/
+https://github.com/BVLC/caffe/wiki/OpenCV-3.2-Installation-Guide-on-Ubuntu-16.04
 "
 
 # ANSI Escape Codes
@@ -17,7 +17,7 @@ echo "${YELLOW}Installing opencv-$OPENCV_VERSION for Mac/Linux${RESET} ...\n"
 echo "================================================================================
 Make sure that you have the required dependencies!
 Linux:
-    sudo apt-get -y install libopencv-dev build-essential cmake git libgtk2.0-dev pkg-config python-dev python-numpy libdc1394-22 libdc1394-22-dev libjpeg-dev libpng12-dev libtiff4-dev libjasper-dev libavcodec-dev libavformat-dev libswscale-dev libxine-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libv4l-dev libtbb-dev libqt4-dev libfaac-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev x264 v4l-utils unzip qt5-qmake qt5-default
+    sudo apt-get install build-essential cmake git pkg-config unzip ffmpeg qtbase5-dev python-dev python3-dev python-numpy python3-numpy libopencv-dev libgtk-3-dev libdc1394-22 libdc1394-22-dev libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libavcodec-dev libavformat-dev libswscale-dev libxine2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libv4l-dev libtbb-dev libfaac-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev v4l-utils python-vtk liblapacke-dev libopenblas-dev checkinstall libgdal-dev
 
 Mac:
     Install Xcode Command Line Tools: http://railsapps.github.io/xcode-command-line-tools.html
@@ -35,7 +35,7 @@ fi
 
 cd lib
 echo "${GREEN}Downloading opencv-$OPENCV_VERSION${RESET}"
-wget -c https://github.com/Itseez/opencv/archive/$OPENCV_VERSION.zip
+wget -c https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip
 unzip $OPENCV_VERSION.zip
 rm -f $OPENCV_VERSION.zip
 

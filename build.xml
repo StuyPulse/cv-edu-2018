@@ -17,7 +17,7 @@
     <property name="src.dir" value="src" />
     <property name="build.dir" value="build" />
 
-    <property name="opencv_home" value="lib/opencv-3.0.0" />
+    <property name="opencv_home" value="lib/opencv-3.2.0" />
     <!--
         Locations of opencv jar and libs, within opencv_home, differ in Windows
         installations vs. *nix ones. Both locations for each are used such that
@@ -25,9 +25,9 @@
     -->
     <!-- *ix installation locations: -->
     <property name="opencv_lib" value="${opencv_home}/build/lib" />
-    <property name="opencv_jar" value="${opencv_home}/build/bin/opencv-300.jar" />
+    <property name="opencv_jar" value="${opencv_home}/build/bin/opencv-320.jar" />
     <!-- Windows installation locations: -->
-    <property name="opencv_jar_win" value="${opencv_home}/build/java/opencv-300.jar" />
+    <property name="opencv_jar_win" value="${opencv_home}/build/java/opencv-320.jar" />
     <property name="opencv_lib_win" value="${opencv_home}/build/java/x64" />
 
     <!-- If user has problems with JavaFX, they can add a copy of the JAR to lib/ -->

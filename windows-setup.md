@@ -14,16 +14,16 @@ First, these things need to be installed:
 - Either Apache Ant, make, or Eclipse (although Eclipse will require some
   setup).
 
-- Clone the repo [https://github.com/Team694/cv-edu-2017](), or if you've
+- Clone the repo [https://github.com/Team694/cv-edu-2018](), or if you've
   already cloned it, run `git pull`.
 
 After this, install OpenCV with [this
-installer](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.0.0/)
+installer](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.2.0/)
 on SourceForge. When it asks where to extract the files, enter
 `C:\...\cv-edu-2017\lib` (filling in the `...` with the path to cv-edu-2017).
 
 You'll need to rename the installation folder. By default it installs as
-"opencv". Rename that to "opencv-3.0.0".
+"opencv". Rename that to "opencv-3.2.0".
 
 Finally, run `ant compile` (in Git Bash) in the `cv-edu-2017` directory, and
 then `ant run`. It should compile and run successfully, with a window showing
@@ -38,7 +38,7 @@ If `ant run` fails...
   1.8.0_101, the JDK binaries are not in PATH. Add `C:\...\jdk1.8.0_101\bin` to
   PATH (filling in ... with full path).
 
-If `ant compile` fails, make sure `cv-edu-2017/lib/opencv-3.0.0` (the OpenCV
+If `ant compile` fails, make sure `cv-edu-2017/lib/opencv-3.2.0` (the OpenCV
 installation) exists.
 
-Ask Wilson, James, or Helen if it still doesn't work.
+Ask Helen if it still doesn't work.

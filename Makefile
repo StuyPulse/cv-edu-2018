@@ -2,11 +2,11 @@ PROJECT_ROOT = $(shell pwd)
 
 LIB = $(PROJECT_ROOT)/lib
 
-STUYVISION = $(LIB)/stuyvision.jar
-JAVAFX = $(LIB)/jfxrt.jar
-
 SRC = $(PROJECT_ROOT)/src
 BIN = $(PROJECT_ROOT)/build
+
+STUYVISION = $(LIB)/stuyvision.jar
+JAVAFX = $(LIB)/jfxrt.jar
 
 OPENCV = $(LIB)/opencv-3.2.0
 OPENCV_SCH = /var/tmp/robo-software/opencv-3.2.0
