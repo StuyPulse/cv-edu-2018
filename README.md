@@ -18,7 +18,7 @@ To set up on Windows, see `windows-setup.md` for instructions.
 
 - Official OpenCV 3.1.0 [JavaDocs](http://docs.opencv.org/java/3.1.0/). (There are no JavaDocs for OpenCV 3.2.0.)
 
-- Official OpenCV 3.1.0 [documentation](http://docs.opencv.org/3.2.0/). This has
+- Official OpenCV 3.2.0 [documentation](http://docs.opencv.org/3.2.0/). This has
   much more detail than the JavaDocs, but is intended for
   those using OpenCV with C++. There are no examples in Java
  (all are C/C++).
