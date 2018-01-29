@@ -1,8 +1,8 @@
-# cv-edu-2017
+# cv-edu-2018
 
-CV Education for the 2017 season
+CV Education for the 2018 season
 
-OpenCV needs to be installed at `lib/opencv-3.0.0`.
+OpenCV needs to be installed at `lib/opencv-3.2.0`.
 
 On Linux, you can install OpenCV with the
 `install-opencv-unix.sh` script.  There are more detailed
