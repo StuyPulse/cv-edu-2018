@@ -38,7 +38,9 @@ public class Main {
     }
 
     public static void processLessonZero(ModuleRunner runner) {
-        String imagesDir = Main.class.getResource("").getPath() + "sampleImages/lesson0";
+        String imagesDir = Main.class.getResource("").getPath();
+        imagesDir = imagesDir.substring(0, imagesDir.length() - 6);
+        imagesDir += "sampleImages/lesson0/";
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             imagesDir = imagesDir.substring(1); // Chop off leading / that appears before C:
         }
