@@ -1,4 +1,4 @@
-# Lesson 1
+# Lesson 0
 
 This lesson is reviewing of the following concepts:
 
@@ -19,9 +19,10 @@ This lesson is reviewing of the following concepts:
 
 ## Task
 
-There are images provided in [this folder](sampleImages/lesson1) that will be used for this task.
+There is a skeleton provided in `Main.java` for opening the images and GUI, and in `LessonZeroVision.java` for your processing code.
+There are images provided in [this folder](../sampleImages/lesson0) that will be used for this task.
 
-For each image in the folder:
+For each image in the image folder:
 1. Post the original image to the GUI.
 2. Convert the image to HSV.
 3. Filter the images with the following values:
