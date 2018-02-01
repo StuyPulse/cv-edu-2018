@@ -26,9 +26,9 @@ For each image in the image folder:
 1. Post the original image to the GUI.
 2. Convert the image to HSV.
 3. Filter the images with the following values:
-    * Hue: 0-255 [CHANGE]
-    * Saturation: 0-255 [CHANGE]
-    * Value: 0-255 [CHANGE]
+    * Hue: 86-93
+    * Saturation: 0-255
+    * Value: 83-255
 4. Post each image after filtering.
 5. Create a final filtered image, keeping only the images that were white in all channels.
 6. Smooth the image, with erode and dilate/blur. (This may occur earlier or later than specified - up to you.)
