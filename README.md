@@ -79,3 +79,5 @@ Documentation written by Wilson for relevant OpenCV methods can be found [here](
 The links to the lessons are here:
 
 * [Lesson 0](lessons/lesson-0.md)
+
+These lessons may be done on your own time, but you can always contact Helen on Slack if you need help!
