@@ -38,18 +38,18 @@ public class Main {
     }
 
     public static void processLessonZero(ModuleRunner runner) {
-        File[] directoryListing = listImagesInDir( /* PATH HERE */ );
+        String imagesDir = Main.class.getResource("").getPath() + "sampleImages/lesson0";
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            imagesDir = imagesDir.substring(1); // Chop off leading / that appears before C:
+        }
+        File[] directoryListing = listImagesInDir(imagesDir);
         // Use the function below to list the images for lesson 0
         // And then map all the images, using your class to process it.
     }
 
     // path is a relative path
     // e.g. to refer to sampleImages you pass in "sampleImages/"
-    public static File[] listImagesInDir(String path) {
-        String imagesDir = Main.class.getResource("").getPath() + path;
-        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-            imagesDir = imagesDir.substring(1); // Chop off leading / that appears before C:
-        }
+    public static File[] listImagesInDir(String imagesDir) {
         System.out.println("Getting images from " + imagesDir);
         File directory = new File(imagesDir);
         return directory.listFiles();
