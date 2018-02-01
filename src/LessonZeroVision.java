@@ -9,6 +9,7 @@ public class LessonZeroVision extends VisionModule {
         // Your code here
         // Remember to release your Mats before setting them to something else!
         // You may create helper functions if you wish
+        // You can also create variables outside this function if necessary
     }
 
 }
