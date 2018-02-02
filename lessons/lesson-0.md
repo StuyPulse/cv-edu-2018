@@ -8,14 +8,16 @@ This lesson is reviewing of the following concepts:
 
 ### Functions you may want to use:
 
-* `Imgproc.cvtColor()`
-* `Core.split()`
-* `Core.inRange()`
-* `Core.merge()`
-* `Core.bitwise_and`
-* `Imgproc.erode(), Imgproc.dilate()`
-* `Imgproc.findContours()`
-* `drawContours()`
+(Remember the [docs](../opencv-docs.md)!!!)
+
+* `Imgproc.cvtColor(Mat input, Mat output, int code)`
+* `Core.split(Mat frame, ArrayList<Mat> channels)`
+* `Core.inRange(Mat input, Scalar lowerBound, Scalar upperBound, Mat output)`
+* `Core.merge(ArrayList<Mat> channels, Mat frame)`
+* `Core.bitwise_and(Mat input1, Mat input2, Mat output)`
+* `Imgproc.erode(Mat input, Mat output, Mat kernel), Imgproc.dilate(Mat input, Mat output, Mat kernel)`
+* `Imgproc.findContours(Mat image, ArrayList<MatOfPoint> contours, Mat hierarchy, int mode, int method)`
+* `Imgproc.drawContours(Mat image, ArrayList<MatOfPoint> contours, int contourIdx, Scalar color, int thickness)`
 
 ## Task
 
