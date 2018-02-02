@@ -89,6 +89,18 @@ Imgproc.findContours(filteredImage, contours, new Mat(), Imgproc.RETR_EXTERNAL, 
 
 Now each member of `contours` is a contour, represented as a `MatOfPoint`.
 
+### void Imgproc.drawContours(Mat image, ArrayList<MatOfPoint> contours, int contourIdx, Scalar color, int thickness)
+
+Draws contours outlines or filled contours in list `contours` on `image`` in the given `Scalar color`. `contourIdx` specifies which contours to draw, and if `contourIdx < 0`, all contours are drawn.
+
+If `thickness < 0`, the area is filled in. Otherwise, the outline is drawn with the given `thickness`.
+
+```java
+// frame is unfiltered
+Mat drawn = frame.clone();
+Imgproc.drawContours(drawn, contours, -1, new Scalar(0, 255, 0), 1);
+```
+
 ### MatOfPoint, MatOfPoint2f
 
 A `MatOfPoint` is a matrix of `Point`s. A `Point` has integer coordinates.
