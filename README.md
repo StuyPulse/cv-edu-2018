@@ -35,6 +35,12 @@ If you're working on your own laptop and you have an installation of OpenCV 3.2.
 $ ln -s /path/to/OpenCV-3.2.0/installation lib/opencv-3.2.0
 ```
 
+You may also do the same with your `jfxrt.jar` (which should be installed at `/usr/lib/jvm/default-java/jre/lib/ext/jfxrt.jar` if you are running Ubuntu.)
+
+```bash
+$ ln -s /path/to/jfxrt.jar lib/jfxrt.jar
+```
+
 ### Working on the school desktops
 
 To develop on the desktops, log in to either a Guest session or your own
