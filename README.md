@@ -33,6 +33,7 @@ If you're working on your own laptop and you have an installation of OpenCV 3.2.
 
 ```bash
 $ ln -s /path/to/OpenCV-3.2.0/installation lib/opencv-3.2.0
+```
 
 ### Working on the school desktops
 
@@ -72,7 +73,7 @@ Documentation written by Wilson for relevant StuyVision methods can be found [he
 
 ### OpenCV functions:
 
-Documentation written by Wilson for relevant OpenCV methods can be found [here](opencv-docs.md).
+Documentation written by Wilson for relevant OpenCV functions can be found [here](opencv-docs.md).
 
 ## Lessons
 
