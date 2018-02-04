@@ -86,5 +86,6 @@ Documentation written by Wilson for relevant OpenCV functions can be found [here
 The links to the lessons are here:
 
 * [Lesson 0](lessons/lesson-0.md)
+* [Lesson 1](lessons/lesson-1.md)
 
 These lessons may be done on your own time, but you can always contact Helen on Slack if you need help!

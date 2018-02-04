@@ -149,6 +149,23 @@ Methods:
 - `add`: `myArrayList.add(thing)` adds `thing` to the end of `myArrayList`
 - many more, all described in the JavaDocs
 
+### RotatedRect
+
+A `RotatedRect` represents a rectangle on a plane that is not upright.
+
+Methods:
+- `Imgproc.minAreaRect(MatOfPoint2f points)` returns the `RotatedRect` with the smallest area that includes all the points in the `MatOfPoint2f` inputted.
+
+### void boundingRect(MatOfPoint points)
+
+This returns the smallest upright rectangle that includes all the points in the `MatOfPoint2f` inputted.
+
+Using this function may require use of complicated algorithms, so this code snippet is not necessarily the most accurate towards real use.
+
+```java
+MatOfPoint contour = new MatOfPoint(contours.get(i).toArray());
+Rect rect = Imgproc.boundingRect(contour);
+```
 
 ## December 15 Lesson
 
