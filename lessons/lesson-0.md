@@ -30,6 +30,8 @@ Imgproc.drawContours(Mat image, ArrayList<MatOfPoint> contours, int contourIdx, 
 
 ## Task
 
+#### Try not to look at old code! Remember the [OpenCV docs](../opencv-docs.md)!
+
 There is a skeleton provided in `Main.java` for opening the images and GUI, and in `LessonZeroVision.java` for your processing code.
 There are images provided in [this folder](../sampleImages/lesson0) that will be used for this task.
 
