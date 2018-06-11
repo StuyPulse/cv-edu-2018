@@ -45,10 +45,16 @@ public class Main {
             imagesDir = imagesDir.substring(1); // Chop off leading / that appears before C:
         }
         File[] directoryListing = listImagesInDir(imagesDir);
-        // Use the function below to list the images for lesson 0
-        // And then map all the images, using your class to process it.
-    }
+        
 
+        for (int i = 0; i < directoryListing.length && i < 10; i++) {
+            String path = imagesDir + directoryListing[i].getName();
+            runner.addMapping(new ImageCaptureSource(path), new LessonZeroVision());
+        }
+        String colorwheel = imagesDir + "colorwheel.png";
+        runner.addMapping(new ImageCaptureSource(colorwheel), new LessonZeroVision());
+
+    } 
     // path is a relative path
     // e.g. to refer to sampleImages you pass in "sampleImages/"
     public static File[] listImagesInDir(String imagesDir) {
