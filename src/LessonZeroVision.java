@@ -43,6 +43,8 @@ public class LessonZeroVision extends VisionModule {
         Imgproc.dilate(filteredSat, filteredSat, dilateKernel);
         Imgproc.erode(filteredValue, filteredValue, erodeKernel);
         Imgproc.dilate(filteredValue, filteredValue, dilateKernel);
+        dilateKernel.release();
+        erodeKernel.release();
         postImage(filteredHue, "Filtered Hue");
         postImage(filteredSat, "Filtered Saturation");
         postImage(filteredValue, "Filtered Value");
@@ -56,10 +58,19 @@ public class LessonZeroVision extends VisionModule {
         Mat hierarchy = new Mat();
 
         Imgproc.findContours(filtered, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-        Mat drawn = filtered.clone();
+        Mat contoured = new Mat();
+        filteredHue.setTo(new Scalar(0));
+        filteredSat.setTo(new Scalar(0));
+        filteredValue.setTo(new Scalar(0));
+        ArrayList<Mat> fChannels = new ArrayList<Mat>();
+        fChannels.add(filteredHue);
+        fChannels.add(filteredSat);
+        fChannels.add(filteredValue);
+        Core.merge(fChannels, contoured);
+        postImage(contoured, "Merged");
 
-        Imgproc.drawContours(drawn, contours, -1, new Scalar(255, 255, 0), 1);
-        postImage(drawn, "Contoured");
+        Imgproc.drawContours(contoured, contours, -1, new Scalar(0, 255, 0), 1);
+        postImage(contoured, "Contoured");
    }
 
 }
