@@ -56,20 +56,26 @@ public class LessonZeroVision extends VisionModule {
 
         ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
-
+        //System.out.println("bitwiseanded: " + filtered);
         Imgproc.findContours(filtered, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
         Mat contoured = new Mat();
         filteredHue.setTo(new Scalar(0));
         filteredSat.setTo(new Scalar(0));
-        filteredValue.setTo(new Scalar(0));
         ArrayList<Mat> fChannels = new ArrayList<Mat>();
         fChannels.add(filteredHue);
         fChannels.add(filteredSat);
-        fChannels.add(filteredValue);
+        fChannels.add(filtered);
+        //Mat zeroMat = new Mat();
+        //System.out.println("filteredSat: " + filteredSat);
+        //zeroMat = Mat.zeros(filteredHue.size(), filteredHue.type());
+        //fChannels.add(zeroMat);
+        //fChannels.add(filteredValue);
         Core.merge(fChannels, contoured);
         postImage(contoured, "Merged");
-
+        //Imgproc.findContours(contoured, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+        //Imgproc.cvtColor(contoured, contoured, Imgproc.COLOR_RGB2); 
         Imgproc.drawContours(contoured, contours, -1, new Scalar(0, 255, 0), 1);
+        
         postImage(contoured, "Contoured");
    }
 
