@@ -15,7 +15,13 @@ import org.opencv.core.Mat;
 
 public class LessonZeroVision extends VisionModule {
 
+    public IntegerSliderVariable minHue = new IntegerSliderVariable("Hue Min", 86, 0, 255);
+    public IntegerSliderVariable maxHue = new IntegerSliderVariable("Hue Max", 138, 0, 255);
+    public IntegerSliderVariable minSat = new IntegerSliderVariable("Sat Min", 93, 0, 255);
+    public IntegerSliderVariable maxSat = new IntegerSliderVariable("Sat Man", 157, 0, 255);
+
     public void run(Mat frame) {
+
         postImage(frame, "Original Picture");
         
         Mat hsvFrame = new Mat();
@@ -23,26 +29,40 @@ public class LessonZeroVision extends VisionModule {
         postImage(hsvFrame, "HSV Converted Image");
 
         Mat hueFiltered = new Mat();
-        ArrayList<Mat> hues = new ArrayList<Mat>();
-        Core.split(frame, hues);
-        Core.inRange(hues.get(0), new Scalar(86), new Scalar(93), hueFiltered);
+        ArrayList<Mat> channel = new ArrayList<Mat>();
+        Core.split(frame, channel);
+        Core.inRange(channel.get(0), new Scalar(minHue.value()), new Scalar(maxHue.value()), hueFiltered);
         //Core.merge(hues,hueFiltered);
         postImage(hueFiltered, "Hue Filtered Image");
 
-        Mat filterImage2 = new Mat();
-        ArrayList<Mat> splitImg = new ArrayList<Mat>();
-        Core.split(hueFiltered, splitImg);
-        Core.inRange(splitImg.get(2), new Scalar(83), new Scalar(255), filterImage2);
-        postImage(filterImage2,"Partly Filtered Image");
-        
-        ArrayList<Mat> channel = new ArrayList<Mat>();
+        Mat saturationFilter = new Mat();
+        Core.inRange(channel.get(1), new Scalar(minSat.value()), new Scalar(maxSat.value()), saturationFilter);
+        postImage(saturationFilter,"Saturation Filtered Image");
+
         Mat filteredImage = new Mat();
-        Core.split(frame, channel);
-        Core.inRange(channel.get(0), new Scalar(86), new Scalar(93), channel.get(0));
-        Core.inRange(channel.get(1), new Scalar(0), new Scalar(255), channel.get(1));
-        Core.inRange(channel.get(2), new Scalar(83), new Scalar(255), channel.get(2));
-        Core.merge(channel, filteredImage);
-        postImage(filteredImage, "Filtered Image");
+        Core.bitwise_and(hueFiltered,saturationFilter,filteredImage);
+        postImage(filteredImage,"Filtered Image");
+
+        Mat boxBlur = new Mat();
+        Imgproc.blur(filteredImage,boxBlur,new Size(2,2));
+        postImage(boxBlur,"Box Blur");
+
+        Mat medBlur = new Mat();
+        Imgproc.medianBlur(filteredImage,medBlur, 3);
+        postImage(medBlur,"Median Blur");
+
+        Mat gausBlur = new Mat();
+        Imgproc.GaussianBlur(filteredImage,gausBlur,new Size(0,0),1,1);
+        postImage(gausBlur,"Gaussian Blur");
+
+        Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3, 3));
+        Mat erodeImg = new Mat();
+        Imgproc.erode(saturationFilter,erodeImg,kernel);
+        postImage(erodeImg,"Eroded Saturation Image");
+
+        Mat dilateImg = new Mat();
+        Imgproc.dilate(filteredImage,dilateImg,kernel);
+        postImage(dilateImg,"Dilated Filtered Image");
     }
 
 }

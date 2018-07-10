@@ -1,11 +1,13 @@
 import java.io.File;
 
+import javafx.stage.Stage;
 import stuyvision.VisionModule;
 import stuyvision.ModuleRunner;
 import stuyvision.capture.CaptureSource.ResizeDimension;
 import stuyvision.capture.DeviceCaptureSource;
 import stuyvision.capture.VideoCaptureSource;
 import stuyvision.capture.ImageCaptureSource;
+import stuyvision.gui.IntegerSliderVariable;
 import stuyvision.gui.VisionGui;
 
 public class Main {
@@ -13,7 +15,10 @@ public class Main {
         ModuleRunner runner = new ModuleRunner(5);
         processLessonZero(runner);
         //processCamera(runner);
+        //processSamples(runner);
         VisionGui.begin(args, runner);
+        IntegerSliderVariable minHue = new IntegerSliderVariable("Hue Min", 86, 0, 255);
+        IntegerSliderVariable maxHue = new IntegerSliderVariable("Hue Max", 93, 0, 255);
     }
 
     public static void processCamera(ModuleRunner runner) {
@@ -39,6 +44,7 @@ public class Main {
         // Use the function below to list the images for lesson 0
         // And then map all the images, using your class to process it.
         runner.addMapping(new ImageCaptureSource(imagesDir() + "lesson0/0.jpg"), new LessonZeroVision());
+        runner.addMapping(new ImageCaptureSource(imagesDir() + "colorwheel.png"), new LessonZeroVision());
     }
 
     // path is a relative path
