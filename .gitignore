@@ -4,3 +4,6 @@
 build/
 
 lib/opencv-3.2.0
+
+# Mac OS Config files
+*.DS_Store
