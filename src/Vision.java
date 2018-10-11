@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import stuyvision.VisionModule;
 import stuyvision.gui.VisionGui;
 import stuyvision.gui.IntegerSliderVariable;
@@ -10,6 +10,10 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.RotatedRect;
+import org.opencv.core.Point;
+
 
 public class Vision extends VisionModule {
 
@@ -45,16 +49,29 @@ public class Vision extends VisionModule {
 		Core.bitwise_and(channels.get(0),channels.get(1),hs);
 
 		postImage(hs, "Hue and Saturation Filtered");
-		
+
 		Core.bitwise_and(channels.get(2),hs,combined);
 
 		postImage(combined, "Combined Filtered");
 
 		ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-		
+
 		Mat drawn = frame.clone();
 		Imgproc.findContours(combined,contours,new Mat(),Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_SIMPLE);
-		Imgproc.drawContours(drawn,contours,-1,new Scalar(0,255,0),3);
+		//Imgproc.drawContours(drawn,contours,-1,new Scalar(0,255,0),3);
+		for(MatOfPoint x: contours){
+			//For each contour I want to draw the smallest possible rectangle so first save the rectangle as an Matrix of the rectangle points
+			RotatedRect rotatedRect = Imgproc.minAreaRect(new MatOfPoint2f(x.toArray()));
+			//Now draw the rectangle
+			Point[] vertices = new Point[4];
+			//Im guessing you want it to have 4 vertices of course so you hand it an array of 4 points
+			rotatedRect.points(vertices);
+			//New matrix of points
+			MatOfPoint points = new MatOfPoint(vertices);
+			//Draw the countours from a list of the points
+			Imgproc.drawContours(drawn,Arrays.asList(points),-1,new Scalar(0,255,0),3);
+
+		}
 		postImage(drawn,"Contoured");
 
 		//Imgproc.

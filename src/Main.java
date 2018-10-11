@@ -51,7 +51,7 @@ public class Main {
       //System.out.println(directoryListing[x]);
       System.out.println(imagesDir + directoryListing[x].getName());
       String path = imagesDir + directoryListing[x].getName();
-      runner.addMapping(new ImageCaptureSource(path), new Vision());
+      runner.addMapping(new ImageCaptureSource(path), new LessonZeroVision());
     }
   }
 
