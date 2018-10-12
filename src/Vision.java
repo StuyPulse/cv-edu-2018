@@ -33,6 +33,9 @@ public class Vision extends VisionModule {
 		Mat converted = new Mat();
 
 		Imgproc.cvtColor(frame,converted,Imgproc.COLOR_BGR2HSV);
+		//Still a bit unsure about Size and the corrdinates after that, Will have to research what the parameters mean
+		Imgproc.GaussianBlur(converted,converted,new Size(5,5),5,5);
+
 		ArrayList<Mat> channels = new ArrayList<Mat>();
 		Core.split(converted, channels);
 		Core.inRange(channels.get(0),new Scalar(minHue.value()), new Scalar(maxHue.value()),channels.get(0));
@@ -69,8 +72,9 @@ public class Vision extends VisionModule {
 			//New matrix of points
 			MatOfPoint points = new MatOfPoint(vertices);
 			//Draw the countours from a list of the points
-			Imgproc.drawContours(drawn,Arrays.asList(points),-1,new Scalar(0,255,0),3);
-
+			Imgproc.drawContours(drawn,Arrays.asList(points),-1,new Scalar(0,255,0),2);
+			//To do: Add extra processing on the rectangle width and height
+			//rect.size.height and rect.size.width
 		}
 		postImage(drawn,"Contoured");
 
