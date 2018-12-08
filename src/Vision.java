@@ -23,8 +23,11 @@ public class Vision extends VisionModule {
 
 	public IntegerSliderVariable Sat = new IntegerSliderVariable("Min Saturation", 0,  0, 255);
 	//Default, Minimum, Maximum
+	public IntegerSliderVariable SatMax = new IntegerSliderVariable("Max Saturation", 255,  0, 255);
 
-	public IntegerSliderVariable Val = new IntegerSliderVariable("Max Value", 255, 0, 255);
+	public IntegerSliderVariable Val = new IntegerSliderVariable("Min Value", 0, 0, 255);
+
+	public IntegerSliderVariable ValMax = new IntegerSliderVariable("Max Value", 255, 0, 255);
 
 
 	public void run(Mat frame) {
@@ -33,14 +36,15 @@ public class Vision extends VisionModule {
 		Mat converted = new Mat();
 
 		Imgproc.cvtColor(frame,converted,Imgproc.COLOR_BGR2HSV);
-		//Still a bit unsure about Size and the corrdinates after that, Will have to research what the parameters mean
-		Imgproc.GaussianBlur(converted,converted,new Size(5,5),5,5);
+		//Pixels nearby will set themselves closer to the color of the median of other pixels around it to eliminate variation
+		//Imgproc.medianBlur(converted,converted,5);
+		Imgproc.GaussianBlur(converted,converted,new Size(0,0),5,5);
 
 		ArrayList<Mat> channels = new ArrayList<Mat>();
 		Core.split(converted, channels);
 		Core.inRange(channels.get(0),new Scalar(minHue.value()), new Scalar(maxHue.value()),channels.get(0));
-		Core.inRange(channels.get(1),new Scalar(Sat.value()), new Scalar(255),channels.get(1));
-		Core.inRange(channels.get(2),new Scalar(Val.value()),new Scalar(255),channels.get(2));
+		Core.inRange(channels.get(1),new Scalar(Sat.value()), new Scalar(SatMax.value()),channels.get(1));
+		Core.inRange(channels.get(2),new Scalar(Val.value()),new Scalar(ValMax.value()),channels.get(2));
 
 		postImage(channels.get(0), "Hue Filtered");
 		postImage(channels.get(1), "Saturation Filtered");
@@ -67,12 +71,26 @@ public class Vision extends VisionModule {
 			RotatedRect rotatedRect = Imgproc.minAreaRect(new MatOfPoint2f(x.toArray()));
 			//Now draw the rectangle
 			Point[] vertices = new Point[4];
-			//Im guessing you want it to have 4 vertices of course so you hand it an array of 4 points
-			rotatedRect.points(vertices);
+
+			//rotatedRect.points(vertices);
 			//New matrix of points
 			MatOfPoint points = new MatOfPoint(vertices);
+			/*
 			//Draw the countours from a list of the points
+			MatOfPoint rectMat = new MatOfPoint();
+			Point[] corners = points.toArray();
+			double width = rotatedRect.size.width;
+		  double height = rotatedRect.size.height;
+			double area = width * height;
+
+			if(width > 12 && height > 8 && area > 600){
+				rotatedRect.points(vertices);
+				rectMat.fromArray(vertices);
+			}
+			*/
+
 			Imgproc.drawContours(drawn,Arrays.asList(points),-1,new Scalar(0,255,0),2);
+			//Imgproc.drawContours(drawn,toList(rectMat),-1,new Scalar(0,255,0),2);
 			//To do: Add extra processing on the rectangle width and height
 			//rect.size.height and rect.size.width
 		}

@@ -24,7 +24,7 @@ public class Main {
 
     public static void processSamples(ModuleRunner runner) {
         //String imagesDir = Main.class.getResource("").getPath() + "../sampleImages/";
-        String imagesDir = "C:/Users/George Liang/Desktop/cvstuff/cv-edu-2018/sampleImages/";
+        String imagesDir = "C:/Users/No Lardo/Desktop/cv-edu-2018/sampleImages/";
         /*
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             imagesDir = imagesDir.substring(1); // Chop off leading / that appears before C:
@@ -45,7 +45,7 @@ public class Main {
     }
 
   public static void processLessonZero(ModuleRunner runner){
-    String imagesDir = "C:/Users/George Liang/Desktop/cvstuff/cv-edu-2018/sampleImages/lesson0/";
+    String imagesDir = "C:/Users/No Lardo/Desktop/cv-edu-2018/sampleImages/lesson0/";
     File[] directoryListing = listImagesInDir(imagesDir);
     for (int x = 0; x < directoryListing.length; x++){
       //System.out.println(directoryListing[x]);
