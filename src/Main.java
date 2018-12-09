@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         ModuleRunner runner = new ModuleRunner(5);
         processLessonZero(runner);
+        processLessonOne(runner);
         //processCamera(runner);
         //processSamples(runner);
         VisionGui.begin(args, runner);
@@ -45,6 +46,12 @@ public class Main {
         // And then map all the images, using your class to process it.
         runner.addMapping(new ImageCaptureSource(imagesDir() + "lesson0/0.jpg"), new LessonZeroVision());
         runner.addMapping(new ImageCaptureSource(imagesDir() + "colorwheel.png"), new LessonZeroVision());
+        runner.addMapping(new ImageCaptureSource(imagesDir() + "colorwheel.png"), new Vision());
+    }
+
+    public static void processLessonOne(ModuleRunner runner) {
+        runner.addMapping(new ImageCaptureSource(imagesDir() + "lesson0/0.jpg"), new LessonOneVision());
+        runner.addMapping(new ImageCaptureSource(imagesDir() + "colorwheel.png"), new LessonOneVision());
     }
 
     // path is a relative path

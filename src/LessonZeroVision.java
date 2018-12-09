@@ -8,10 +8,9 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
 import org.opencv.imgproc.Imgproc;
-
-
-import org.opencv.core.Mat;
 
 public class LessonZeroVision extends VisionModule {
 
@@ -19,6 +18,8 @@ public class LessonZeroVision extends VisionModule {
     public IntegerSliderVariable maxHue = new IntegerSliderVariable("Hue Max", 138, 0, 255);
     public IntegerSliderVariable minSat = new IntegerSliderVariable("Sat Min", 93, 0, 255);
     public IntegerSliderVariable maxSat = new IntegerSliderVariable("Sat Man", 157, 0, 255);
+    public IntegerSliderVariable minVal = new IntegerSliderVariable("Val Min",3,0,255);
+    public IntegerSliderVariable maxVal = new IntegerSliderVariable("Val Max",255,0,255);
 
     public void run(Mat frame) {
 
@@ -38,6 +39,10 @@ public class LessonZeroVision extends VisionModule {
         Mat saturationFilter = new Mat();
         Core.inRange(channel.get(1), new Scalar(minSat.value()), new Scalar(maxSat.value()), saturationFilter);
         postImage(saturationFilter,"Saturation Filtered Image");
+
+        Mat valFilter = new Mat();
+        Core.inRange(channel.get(2),new Scalar(minVal.value()),new Scalar(maxVal.value()),valFilter);
+        postImage(valFilter,"Value Filtered Image");
 
         Mat filteredImage = new Mat();
         Core.bitwise_and(hueFiltered,saturationFilter,filteredImage);
@@ -63,6 +68,17 @@ public class LessonZeroVision extends VisionModule {
         Mat dilateImg = new Mat();
         Imgproc.dilate(filteredImage,dilateImg,kernel);
         postImage(dilateImg,"Dilated Filtered Image");
+
+        ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+        Imgproc.findContours(gausBlur,contours,new Mat(),Imgproc.RETR_EXTERNAL,Imgproc.CHAIN_APPROX_NONE);
+        Mat drawn = frame.clone();
+        Imgproc.drawContours(drawn,contours,-1,new Scalar(0,255,0),3);
+        postImage(drawn,"RETR_EXTERNAL");
+
+        Imgproc.findContours(gausBlur,contours,new Mat(),Imgproc.RETR_LIST,Imgproc.CHAIN_APPROX_NONE);
+        Mat contourFrame = frame.clone();
+        Imgproc.drawContours(contourFrame,contours,-1,new Scalar(0,255,0),3);
+        postImage(contourFrame,"RETR_LIST");
     }
 
 }

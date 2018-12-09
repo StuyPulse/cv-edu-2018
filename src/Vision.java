@@ -11,6 +11,8 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 public class Vision extends VisionModule {
+    public LessonZeroVision lesson0 = new LessonZeroVision();
+
     public void run(Mat frame) {
         postImage(frame, "Camera Feed");
 
@@ -20,12 +22,8 @@ public class Vision extends VisionModule {
 
         Core.split(frame, channels);
 
-        postImage(channels.get(0), "Hue channel");
-
-        Mat filtered = new Mat();
-
-        Core.inRange(channels.get(0), new Scalar(150), new Scalar(230), filtered);
-
-        postImage(filtered, "Filtered for teel");
+        postImage(channels.get(0),"Hue channel");
+        postImage(channels.get(1),"Saturation channel");
+        postImage(channels.get(2),"Value channel");
     }
 }
