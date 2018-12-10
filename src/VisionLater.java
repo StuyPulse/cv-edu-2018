@@ -21,6 +21,7 @@ public class VisionLater extends VisionModule {
     public IntegerSliderVariable maxValue = new IntegerSliderVariable("Max Value", 255, 0, 255);
 
     public void run(Mat frame) {
+	/*
         postImage(frame, "Camera Feed");
 
         //Imgproc.medianBlur(frame, frame, 5);
@@ -75,5 +76,6 @@ public class VisionLater extends VisionModule {
 
         // Just a name
         Mat filtered = channels.get(0);
+	*/
     }
 }
