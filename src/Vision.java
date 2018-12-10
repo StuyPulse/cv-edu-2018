@@ -15,6 +15,7 @@ import org.opencv.core.RotatedRect;
 import org.opencv.core.Point;
 
 
+
 public class Vision extends VisionModule {
     //Default, Minimum, Maximum
     public IntegerSliderVariable minHue = new IntegerSliderVariable("Min Hue", 0,  0, 255);
@@ -40,10 +41,10 @@ public class Vision extends VisionModule {
     Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));
     Imgproc.erode(converted,converted, kernel);
 		//Pixels nearby will set themselves closer to the color of the median of other pixels around it to eliminate variation
-		//Imgproc.medianBlur(converted,converted,5);
+		Imgproc.medianBlur(converted,converted,5);
 
 		//Pixels in the center of a "window" will set themselves closer to the average of points around them
-		Imgproc.GaussianBlur(converted,converted,new Size(7,7),5,5);
+		//Imgproc.GaussianBlur(converted,converted,new Size(7,7),5,5);
 
 		//Create an ArrayList to hold the split image
 		ArrayList<Mat> channels = new ArrayList<Mat>();
@@ -83,19 +84,22 @@ public class Vision extends VisionModule {
 
 			//Draw the smallest possible rectangle
 			RotatedRect rotatedRect = Imgproc.minAreaRect(new MatOfPoint2f(x.toArray()));
+      Point cen = rotatedRect.center;
       double width = rotatedRect.size.width;
       double height = rotatedRect.size.height;
       float ratio = (float)width/ (float)height;
 			//Store the vertices of the rectangle in a point array called vertices
 			Point[] vertices = new Point[4];
-      if (ratio < 1.1 && ratio > 0.9){
+      if (ratio < 1.2 && ratio > 0.8){
 			rotatedRect.points(vertices);
 
 			//New matrix of points
 			MatOfPoint points = new MatOfPoint(vertices);
-
+      int radius =(int) Math.sqrt(Math.pow((vertices[0].x - cen.x),2) + Math.pow(vertices[0].y - cen.y,2));
 			//Draw the countours from a list of the points
 			Imgproc.drawContours(drawn,Arrays.asList(points),-1,new Scalar(0,255,0),2);
+      Imgproc.putText(drawn,"Object",vertices[0],1,1,new Scalar(0,0,255),2);
+      Imgproc.circle(drawn,cen,radius,new Scalar(0,255,0),2);
     }
 		}
 		postImage(drawn,"Contoured");
