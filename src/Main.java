@@ -11,7 +11,9 @@ import stuyvision.gui.VisionGui;
 public class Main {
     public static void main(String[] args) {
         ModuleRunner runner = new ModuleRunner(5);
+        runner.addMapping(new DeviceCaptureSource(0), new LessonZeroVision());
         processLessonZero(runner);
+        //processCamera(runner);
         VisionGui.begin(args, runner);
     }
 
